@@ -4,7 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import ExchangeRates from "./index.js";
+
 import Home from "../src/pages/Home";
 
 function App() {
