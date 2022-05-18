@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
-import { gql } from 'apollo-boost'
-import { graphql } from 'react-apollo'
+import React, { Component, setState } from "react";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { graphql, Query } from "react-apollo";
+import { request, gql } from "graphql-request";
 
-const getClothesQuery = gql`
-{
+const GET_CLOTHES = gql`
+  {
     category {
       products {
         inStock
@@ -14,21 +15,41 @@ const getClothesQuery = gql`
           currency {
             label
             symbol
-           }
+          }
           amount
-        } 
+        }
       }
     }
-  
-`
+  }
+`;
 
 export class Clothes extends Component {
-    render() {
-      console.log(this.props)
+  constructor(props) {
+    super(props);
+    this.state = { data: [] };
+  }
+
+  componentDidMount() {
+    request("http://localhost:4000", GET_CLOTHES).then((data) => {
+      console.log(data);
+      this.setState({ data: data });
+      console.log("Products State: ", this.state.data);
+    });
+  }
+
+  
+
+  render() {
+    
+    console.log("read", this.state.data.category);
     return (
-      <div>Clothes</div>
+      <>
+        <div>
+ 
+       </div>
+      </>
     )
   }
 }
 
-export default graphql(getClothesQuery)(Clothes)
+export default Clothes;

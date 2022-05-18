@@ -2,32 +2,30 @@ import React, { Component, setState } from "react";
 import Nav from "../components/Nav/Nav";
 import Clothes from "../components/Clothes/Clothes"
 import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  useQuery,
+ 
+ 
   gql,
 } from "@apollo/client";
 
-const EXCHANGE_RATES = gql`
-  query Category {
-    category {
-      products {
-        inStock
-        gallery
-        description
-        category
-        prices {
-          currency {
-            label
-            symbol
-          }
-          amount
-        }
-      }
-    }
-}
-`;
+// const EXCHANGE_RATES = gql`
+//   query Category {
+//     category {
+//       products {
+//         inStock
+//         gallery
+//         description
+//         category
+//         prices {
+//           currency {
+//             label
+//             symbol
+//           }
+//           amount
+//         }
+//       }
+//     }
+// }
+// `;
 
 // function ExchangeRates() {
 //   const { loading, error, data } = useQuery(EXCHANGE_RATES);
@@ -48,26 +46,26 @@ export default class Home extends Component {
     products: [],
   };
 
-    componentWillMount () {
-        /* attach listeners to google StreetView */
+    // componentWillMount () {
+    //     /* attach listeners to google StreetView */
     
-        fetch(`http://localhost:4000/`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ query: EXCHANGE_RATES }),
-        }).then(res => {
-            this.setState({ products: res.json()})
-        })
-    };
+    //     fetch(`http://localhost:4000/`, {
+    //         method: "POST",
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify({ query: EXCHANGE_RATES }),
+    //     }).then(res => {
+    //         this.setState({ products: res.json()})
+    //     })
+    // };
 
   render() {
     return (
       <>
         <Nav />
-        
-        {this.state.products.map((product) => {
+        <Clothes />
+        {/* {this.state.products.map((product) => {
           <div key={product.id}>hi</div>;
-        })}
+        })} */}
       </>
     );
   }
