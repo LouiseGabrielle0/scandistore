@@ -10,6 +10,7 @@ import {
  
   gql,
 } from "@apollo/client";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const client = new ApolloClient({ 
   uri: 'http://localhost:4000', // Change to localhost:4000
